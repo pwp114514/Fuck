@@ -1,5 +1,8 @@
 package;
 
+#if android
+import android.Hardware;
+#end
 import offsetMenus.IconOffsets;
 // import GameJolt.GameJoltInfo;
 import Shaders.FXHandler;

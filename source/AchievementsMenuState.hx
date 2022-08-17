@@ -1,5 +1,8 @@
 package;
 
+#if android
+import android.Hardware;
+#end
 import flixel.util.FlxTimer;
 #if desktop
 import Discord.DiscordClient;
@@ -163,6 +166,9 @@ class AchievementsMenuState extends MusicBeatState
 		else
 		{
 			FlxG.camera.shake(0.01);
+			#if android
+			Hardware.vibrate(500);
+			#end
 			FlxG.sound.play(Paths.sound('weekDeny', 'shared'));
 		}
 	}

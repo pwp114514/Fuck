@@ -1,5 +1,8 @@
 package;
 
+#if android
+import android.Hardware;
+#end
 import flixel.util.FlxColor;
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -437,6 +440,9 @@ class StoryMenuState extends MusicBeatState
 		else
 		{
 			FlxG.camera.shake(0.01);
+			#if android
+			Hardware.vibrate(500);
+			#end
 			FlxG.sound.play(Paths.sound('weekDeny', 'shared'));
 		}
 	}

@@ -1,5 +1,8 @@
 package;
 
+#if android
+import android.Hardware;
+#end
 import Shaders.WhiteOverlayShader;
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -168,6 +171,9 @@ class FreeplaySelect extends MusicBeatState
 		if (FlxG.save.data.freeplaylocked[curSelected])
 		{
 			FlxG.camera.shake(0.01);
+			#if android
+			Hardware.vibrate(500);
+			#end
 			FlxG.sound.play(Paths.sound("weekDeny", "shared"));
 
 			trace(FlxG.save.data.freeplayLocked);

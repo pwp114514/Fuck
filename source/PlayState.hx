@@ -1,5 +1,8 @@
 package;
 
+#if android
+import android.Hardware;
+#end
 import lime.math.Vector2;
 import offsetMenus.AnimationDebug;
 import background.BendyBoy;
@@ -3175,6 +3178,9 @@ class PlayState extends MusicBeatState
 									sansTalking = false;
 
 									FlxG.camera.shake(0.005);
+									#if android
+									Hardware.vibrate(500);
+									#end
 								});
 							}
 							else
@@ -3259,6 +3265,9 @@ class PlayState extends MusicBeatState
 										sansTalking = false;
 
 										FlxG.camera.shake(0.005);
+										#if android
+										Hardware.vibrate(500);
+										#end
 									});
 								}
 								else
@@ -5307,6 +5316,9 @@ class PlayState extends MusicBeatState
 										FlxG.sound.play(Paths.sound('hurt', 'cup'));
 									}
 									FlxG.camera.shake(0.05, 0.5);
+									#if android
+									Hardware.vibrate(500);
+									#end
 									trace('oh shit');
 									healthChange(-1);
 									bitch.hasHit = true;
@@ -5383,6 +5395,9 @@ class PlayState extends MusicBeatState
 						healthChange(0.2);
 
 						FlxG.camera.shake(0.005);
+						#if android
+						Hardware.vibrate(500);
+						#end
 
 						chromVal = 0.0025;
 						FlxTween.tween(this, {chromVal: 0}, 0.3);
@@ -5742,6 +5757,9 @@ class PlayState extends MusicBeatState
 			}
 
 			FlxG.camera.shake(0.02, 0.01);
+			#if android
+			Hardware.vibrate(10);
+			#end
 
 			canPressSpace = false;
 
@@ -5766,6 +5784,9 @@ class PlayState extends MusicBeatState
 		if (shakeyCam)
 		{
 			FlxG.camera.shake(0.1, 0.01);
+			#if android
+			Hardware.vibrate(10);
+			#end
 		}
 
 		if (brightSpeed != 0)
@@ -6587,7 +6608,12 @@ class PlayState extends MusicBeatState
 									&& dad.alpha == 1.0)
 								{
 									if (!nmStairs || !iskinky)
+									{
 										FlxG.camera.shake(0.01, 0.01);
+										#if android
+										Hardware.vibrate(10);
+										#end
+									}
 									// camHUD.shake(0.05, 0.01);
 									if (healthBar.percent > 19.95 && !daNote.isSustainNote && mechanicsEnabled)
 									{
@@ -6783,6 +6809,9 @@ class PlayState extends MusicBeatState
 									{
 										FlxG.camera.shake(0.015, 0.1);
 										camHUD.shake(0.005, 0.1);
+										#if android
+										Hardware.vibrate(100);
+										#end
 
 										chromVal = FlxG.random.float(0.005, 0.01);
 										FlxTween.tween(this, {chromVal: defaultChromVal}, FlxG.random.float(0.05, 0.12));
@@ -6795,7 +6824,13 @@ class PlayState extends MusicBeatState
 										&& !fuckinAngry)
 									{
 										if (!iskinky || !nmStairs)
+										{
 											FlxG.camera.shake(0.01, 0.01);
+											#if android
+											Hardware.vibrate(10);
+											#end
+										}
+
 										if (healthBar.percent > 19.95 && !daNote.isSustainNote && mechanicsEnabled)
 										{
 											if (!daNote.isSustainNote)
@@ -7043,6 +7078,9 @@ class PlayState extends MusicBeatState
 							}, (amt - 1));
 							FlxG.camera.shake(0.075, 0.375 * amt);
 							camHUD.shake(0.05, 0.375 * amt);
+							#if android
+							Hardware.vibrate(375 * amt);
+							#end
 							new FlxTimer().start(0.375 * (amt - 1), function(tmr:FlxTimer)
 							{
 								flashback.alpha = 0.0001;
@@ -8494,6 +8532,9 @@ class PlayState extends MusicBeatState
 	{
 		FlxG.sound.play(Paths.sound('inked', 'bendy'));
 		FlxG.camera.shake(0.03, 0.05);
+		#if android
+		Hardware.vibrate(50);
+		#end
 		// inkTime = 1000;
 
 		if (inkTimer != null)
@@ -9104,6 +9145,9 @@ class PlayState extends MusicBeatState
 						new FlxTimer().start(0.10, function(tmr:FlxTimer) // death check
 						{
 							FlxG.camera.shake(0.20, 0.05);
+							#if android
+							Hardware.vibrate(50);
+							#end
 						});
 						new FlxTimer().start(0.66, function(tmr:FlxTimer)
 						{
@@ -11116,6 +11160,9 @@ class PlayState extends MusicBeatState
 					}
 
 					FlxG.camera.shake(0.005);
+					#if android
+					Hardware.vibrate(500);
+					#end
 				}
 
 				focusedOnChar = false;
@@ -11205,6 +11252,9 @@ class PlayState extends MusicBeatState
 				}
 
 				FlxG.camera.shake(0.20, 0.05);
+				#if android
+				Hardware.vibrate(50);
+				#end
 			});
 			new FlxTimer().start(0.66, function(tmr:FlxTimer)
 			{
@@ -11439,6 +11489,9 @@ class PlayState extends MusicBeatState
 					});
 					#end
 					FlxG.camera.shake(0.005);
+					#if android
+					Hardware.vibrate(500);
+					#end
 
 					camMovement.cancel();
 
@@ -12576,6 +12629,9 @@ class PlayState extends MusicBeatState
 				FlxG.sound.play(Paths.sound('shootgas', 'sans'));
 				FlxG.camera.shake(0.015, 0.1);
 				camHUD.shake(0.005, 0.1);
+				#if android
+				Hardware.vibrate(100);
+				#end
 
 				chromVal = 0.01;
 				FlxTween.tween(this, {chromVal: defaultChromVal}, FlxG.random.float(0.05, 0.12));
