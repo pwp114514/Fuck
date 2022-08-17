@@ -585,7 +585,7 @@ class FreeplayState extends MusicBeatState
 	{
 		if (allowedKeys.contains(letter.toLowerCase()))
 		{
-			codeBuffer += codeStringFormat(keyName);
+			codeBuffer += codeStringFormat(letter);
 			if (codeBuffer.length > 32)
 			{
 				FlxG.sound.play(Paths.sound('delete', 'preload'));
