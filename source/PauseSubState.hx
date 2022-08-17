@@ -343,7 +343,7 @@ class PauseSubState extends MusicBeatSubstate
 						cancelSound.play(true);
 					}
 
-                                        GlobalVariables.reset();
+					GlobalVariables.reset();
 
 					new FlxTimer().start(duration, function(tmr:FlxTimer)
 					{

@@ -27,7 +27,7 @@ class Main extends Sprite
 	var memoryMonitor:MemoryMonitor = new MemoryMonitor(10, 3, 0xffffff);
 	var fpsCounter:FPSMonitor = new FPSMonitor(10, 3, 0xFFFFFF);
 
-	//Indie cross vars
+	// Indie cross vars
 	public static var dataJump:Int = 8; // The j
 	public static var menuOption:Int = 0;
 	public static var unloadDelay:Float = 0.5;

@@ -425,10 +425,6 @@ class StoryMenuState extends MusicBeatState
 						leftDuringWeek = false;
 						lockInput = false;
 						persistentUpdate = true;
-						#if android
-						flixel.addons.transition.FlxTransitionableState.skipNextTransOut = true;
-						FlxG.resetState();
-						#end
 					}
 				}
 				else

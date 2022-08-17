@@ -2968,9 +2968,9 @@ class PlayState extends MusicBeatState
 		}
 		#end
 
-                preload('AllnoteSplashes', 'notes');
-                preload('Parry_assets', 'notes');
-                preload('sinSplashes', 'notes');
+		preload('AllnoteSplashes', 'notes');
+		preload('Parry_assets', 'notes');
+		preload('sinSplashes', 'notes');
 
 		startingSong = true;
 
@@ -3090,16 +3090,16 @@ class PlayState extends MusicBeatState
 									];
 								case 10:
 									theDialogue = [
-										                                                         'hmm:normal:none:',
-										            'that expression...:normal:none:',
+										'hmm:normal:none:',
+										'that expression...:normal:none:',
 										"that's the expression of someone who's died ten times in a row.:gay:none:",
-										                  "hey, congrats!:wink:none:",
-										                                               "the big one-oh!:wink:none:",
+										"hey, congrats!:wink:none:",
+										"the big one-oh!:wink:none:",
 										"lets invite all your friends over:gay:none:",
-										                         "we can have pie, and hot dogs, and...:wink:none:",
-										             "hmmm... wait.:eyesclosed:none:",
-										                                  "something's not right.:eyesclosed:none:",
-										   "you don't have any friends.:noeyes:none:"
+										"we can have pie, and hot dogs, and...:wink:none:",
+										"hmmm... wait.:eyesclosed:none:",
+										"something's not right.:eyesclosed:none:",
+										"you don't have any friends.:noeyes:none:"
 									];
 								case 11:
 									theDialogue = [
@@ -3524,11 +3524,14 @@ class PlayState extends MusicBeatState
 				if (isInGame)
 				{
 					if (accessibilitySubtitles != null)
-						FlxTween.tween(accessibilitySubtitles, {alpha: 0.0}, 0.25, {ease: FlxEase.quadInOut, onComplete: function(twn:FlxTween)
-						{
-							camSUBTITLES.visible = false;
-							remove(accessibilitySubtitles);
-						}});
+						FlxTween.tween(accessibilitySubtitles, {alpha: 0.0}, 0.25, {
+							ease: FlxEase.quadInOut,
+							onComplete: function(twn:FlxTween)
+							{
+								camSUBTITLES.visible = false;
+								remove(accessibilitySubtitles);
+							}
+						});
 				}
 				else
 				{
@@ -6110,7 +6113,7 @@ class PlayState extends MusicBeatState
 			#if desktop
 			DiscordClient.changePresence("Chart Editor", null, null, true);
 			#end
-                        GlobalVariables.reset();
+			GlobalVariables.reset();
 			FlxG.switchState(new ChartingState());
 			Application.current.window.onFocusOut.remove(onWindowFocusOut);
 			if (luaModchart != null)
@@ -6203,7 +6206,7 @@ class PlayState extends MusicBeatState
 			if (FlxG.keys.justPressed.SIX)
 			{
 				AnimationDebug.isDad = true;
-                                GlobalVariables.reset();
+				GlobalVariables.reset();
 				FlxG.switchState(new AnimationDebug(dad.curCharacter));
 				Application.current.window.onFocusOut.remove(onWindowFocusOut);
 				if (luaModchart != null)
@@ -7399,12 +7402,12 @@ class PlayState extends MusicBeatState
 			{
 				MainMenuState.showCredits = true;
 				pushToAchievementIDS("The End", true);
-                                GlobalVariables.reset();
+				GlobalVariables.reset();
 				FlxG.switchState(new MainMenuState());
 			}
 			else
 			{
-                                GlobalVariables.reset();
+				GlobalVariables.reset();
 				FlxG.switchState(new StoryMenuState());
 			}
 		};
@@ -7440,6 +7443,10 @@ class PlayState extends MusicBeatState
 
 	function partyIsOver():Void
 	{
+		#if android
+		androidControls.visible = false;
+		#end
+
 		var scoreMultiplier:Float = 1.25 - (0.25 * mechanicType); // should be 0.75 if the mechanics are off !
 		if (HelperFunctions.getSongData(PlayState.SONG.song.toLowerCase(), 'hasmech') == 'false')
 			scoreMultiplier == 1;
@@ -7584,10 +7591,6 @@ class PlayState extends MusicBeatState
 
 		canPause = false;
 
-		#if android
-		androidControls.visible = false;
-		#end
-
 		Conductor.songPosition = FlxG.sound.music.length;
 
 		FlxG.sound.music.stop();
@@ -7648,7 +7651,7 @@ class PlayState extends MusicBeatState
 					Conductor.changeBPM(Main.menubpm);
 
 					OptionsMenu.returnedfromOptions = false;
-                                        GlobalVariables.reset();
+					GlobalVariables.reset();
 					FlxG.switchState(new MainMenuState());
 				}
 				else
@@ -7701,7 +7704,7 @@ class PlayState extends MusicBeatState
 					cupteaBackout();
 					new FlxTimer().start(0.666, function(tmr:FlxTimer)
 					{
-                                                GlobalVariables.reset();
+						GlobalVariables.reset();
 						FlxG.switchState(new FreeplayState());
 					});
 				}
@@ -7714,7 +7717,7 @@ class PlayState extends MusicBeatState
 					else
 					{
 						OptionsMenu.returnedfromOptions = false;
-                                                GlobalVariables.reset();
+						GlobalVariables.reset();
 						FlxG.switchState(new FreeplayState());
 					}
 				}
@@ -10240,8 +10243,8 @@ class PlayState extends MusicBeatState
 
 		if (curBeat % 2 == 0 && MainMenuState.debugTools)
 		{
-			//trace('curStep:' + curStep);
-			//trace('curBeat:' + curBeat);
+			// trace('curStep:' + curStep);
+			// trace('curBeat:' + curBeat);
 		}
 
 		bop();
@@ -12743,9 +12746,9 @@ class PlayState extends MusicBeatState
 		}
 	}
 
-        public function preload(graphic:String, ?lib:String) //preload assets
+	public function preload(graphic:String, ?lib:String) // preload assets
 	{
-		var newthing:FlxSprite = new FlxSprite(0,0).loadGraphic(Paths.image(graphic, lib));
+		var newthing:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image(graphic, lib));
 		newthing.visible = false;
 		add(newthing);
 		remove(newthing);

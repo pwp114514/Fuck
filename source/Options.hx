@@ -187,7 +187,7 @@ class MechsInputVariants extends Option
 	private override function updateDisplay():String
 	{
 		if (FlxG.save.data.mechsInputVariants == true)
-		    return "Bottom hitboxes";
+			return "Bottom hitboxes";
 		else if (FlxG.save.data.mechsInputVariants == false)
 			return "Top Hitboxes";
 

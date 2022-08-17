@@ -129,10 +129,6 @@ class AchievementsMenuState extends MusicBeatState
 			Prompt.backThing = function()
 			{
 				persistentUpdate = true;
-				#if android
-				flixel.addons.transition.FlxTransitionableState.skipNextTransOut = true;
-				FlxG.resetState();
-				#end
 			}
 		}
 

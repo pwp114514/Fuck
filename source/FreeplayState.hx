@@ -501,47 +501,20 @@ class FreeplayState extends MusicBeatState
 
 		if (!accepted) // THE NEW SECRET SONG CODE SYSTEM, JUST A BIT MORE MODULAR
 		{
+			#if android
+			if (FlxG.android.justReleased.BACK)
+			{
+				FlxG.stage.window.textInputEnabled = true;
+				FlxG.stage.window.onTextInput.add(secretCodeFunction);
+			}
+			#else
 			if (FlxG.keys.firstJustPressed() != FlxKey.NONE)
 			{
 				var keyPressed:FlxKey = FlxG.keys.firstJustPressed();
 				var keyName:String = Std.string(keyPressed);
-				if (allowedKeys.contains(keyName.toLowerCase()))
-				{
-					codeBuffer += codeStringFormat(keyName);
-					if (codeBuffer.length > 32)
-					{
-						FlxG.sound.play(Paths.sound('delete', 'preload'));
-						codeBuffer = '';
-					}
-					for (wordRaw in secretCodes)
-					{
-						var word:String = wordRaw.toUpperCase(); // idk just incase
-						if (word.contains(codeBuffer) && codeBuffer.length > 0)
-						{
-							FlxG.sound.play(Paths.sound('type', 'preload'), 1.5);
-							trace('current code: ' + codeBuffer + ', word chosen: ' + word);
-						}
-
-						if (codeBuffer.contains(word))
-						{
-							codeAccepted(word); // IT WORKS!!! ✅
-						}
-					}
-
-					for (word in secretCodes)
-					{
-						if (!word.toUpperCase().contains(codeBuffer.substring(0, codeBuffer.length - 1))
-							|| word.toUpperCase().contains(codeBuffer))
-							break;
-						if (codeBuffer.length > 1)
-						{
-							trace(word);
-							FlxG.sound.play(Paths.sound('delete', 'preload'), 2);
-							codeBuffer = '';
-						}
-					}
-				}
+				secretCodeFunction(keyName);
 			}
+			#end
 		}
 
 		if (controls.UP_P)
@@ -588,13 +561,68 @@ class FreeplayState extends MusicBeatState
 
 		if (controls.BACK && allowTransit)
 		{
+			#if android
+			FlxG.stage.window.textInputEnabled = false;
+			if (FlxG.stage.window.onTextInput.has(secretCodeFunction))
+				FlxG.stage.window.onTextInput.remove(secretCodeFunction);
+			#end
 			backOut();
 		}
 
 		// gotsong doesnt work poly, dont use it lmao
 		if (controls.ACCEPT)
 		{
+			#if android
+			FlxG.stage.window.textInputEnabled = false;
+			if (FlxG.stage.window.onTextInput.has(secretCodeFunction))
+				FlxG.stage.window.onTextInput.remove(secretCodeFunction);
+			#end
 			accept();
+		}
+	}
+
+	function secretCodeFunction(letter:String)
+	{
+		if (allowedKeys.contains(letter.toLowerCase()))
+		{
+			codeBuffer += codeStringFormat(keyName);
+			if (codeBuffer.length > 32)
+			{
+				FlxG.sound.play(Paths.sound('delete', 'preload'));
+				codeBuffer = '';
+			}
+			for (wordRaw in secretCodes)
+			{
+				var word:String = wordRaw.toUpperCase(); // idk just incase
+				if (word.contains(codeBuffer) && codeBuffer.length > 0)
+				{
+					FlxG.sound.play(Paths.sound('type', 'preload'), 1.5);
+					trace('current code: ' + codeBuffer + ', word chosen: ' + word);
+				}
+
+				if (codeBuffer.contains(word))
+				{
+					#if android
+					FlxG.stage.window.textInputEnabled = false;
+					if (FlxG.stage.window.onTextInput.has(secretCodeFunction))
+						FlxG.stage.window.onTextInput.remove(secretCodeFunction);
+					#end
+					codeAccepted(word); // IT WORKS!!! ✅
+				}
+			}
+
+			for (word in secretCodes)
+			{
+				if (!word.toUpperCase().contains(codeBuffer.substring(0, codeBuffer.length - 1))
+					|| word.toUpperCase().contains(codeBuffer))
+					break;
+				if (codeBuffer.length > 1)
+				{
+					trace(word);
+					FlxG.sound.play(Paths.sound('delete', 'preload'), 2);
+					codeBuffer = '';
+				}
+			}
 		}
 	}
 

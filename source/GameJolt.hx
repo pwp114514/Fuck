@@ -287,7 +287,9 @@ class GameJoltLogin extends MusicBeatState
 		add(loginBoxes);
 
 		usernameBox = new FlxUIInputText(0, 175, 300, '', 32, FlxColor.BLACK, FlxColor.GRAY);
+		usernameBox.focusGained = () -> FlxG.stage.window.textInputEnabled = true;
 		tokenBox = new FlxUIInputText(0, 275, 300, '', 32, FlxColor.BLACK, FlxColor.GRAY);
+		tokenBox.focusGained = () -> FlxG.stage.window.textInputEnabled = true;
 
 		loginBoxes.add(usernameBox);
 		loginBoxes.add(tokenBox);
@@ -522,7 +524,7 @@ class GameJoltLogin extends MusicBeatState
 			FlxG.sound.playMusic(Paths.music('freakyMenu'));
 		}
 
-		if (FlxG.keys.justPressed.ESCAPE)
+		if (FlxG.keys.justPressed.ESCAPE #if android || FlxG.android.justReleased.BACK #end)
 		{
 			if (GameJoltLogin.fromOptions)
 			{
@@ -619,8 +621,10 @@ class GJToastManager extends Sprite
 	public function new()
 	{
 		super();
+
 		FlxG.signals.postStateSwitch.add(onStateSwitch);
 		FlxG.signals.gameResized.add(onWindowResized);
+
 		leSound = new FlxSound().loadEmbedded(Paths.sound('achievement'));
 		leSound.persist = true;
 		leSound.volume = 1;
@@ -785,6 +789,7 @@ class Toast extends Sprite
 	public function new(iconPath:String, titleText:String, description:String, color:FlxColor)
 	{
 		super();
+
 		back = new Bitmap(new BitmapData(500, 125, true, 0xFF000000));
 		back.alpha = 0.9;
 		back.x = 0;

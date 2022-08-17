@@ -16,7 +16,7 @@ class AndroidControls extends FlxSpriteGroup
 	{
 		super();
 
-	        hitbox = new FlxHitbox(mechsType);
+		hitbox = new FlxHitbox(mechsType);
 		add(hitbox);
 	}
 

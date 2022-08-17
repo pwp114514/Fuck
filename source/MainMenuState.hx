@@ -338,7 +338,7 @@ class MainMenuState extends MusicBeatState
 			{
 				if (GameJoltAPI.getStatus() && !Main.logAsked)
 				{
-					Main.gjToastManager.createToast("assets/achievements/images/p7.png", 'Signed in as ' + GameJoltAPI.getUserInfo(), 'Connected to GameJolt', false);
+					Main.gjToastManager.createToast(Paths.getPath('images/p7.png', IMAGE, 'achievements'), 'Signed in as ' + GameJoltAPI.getUserInfo(), 'Connected to GameJolt', false);
 					Main.logAsked = true;
 				}
 			}
@@ -508,10 +508,6 @@ class MainMenuState extends MusicBeatState
 				Prompt.backThing = function()
 				{
 					persistentUpdate = true;
-					#if android
-					flixel.addons.transition.FlxTransitionableState.skipNextTransOut = true;
-					FlxG.resetState();
-					#end
 				}
 			}
 
@@ -594,20 +590,20 @@ class MainMenuState extends MusicBeatState
 			if (controls.ACCEPT)
 			{
 				/*if (showKeybindsMenu && curSelected == 0)
-				{
-					persistentUpdate = false;
-					openSubState(new KeyBindMenu());
-					showKeybindsMenu = false;
-					KeyBindMenu.backThing = function()
 					{
-						persistentUpdate = true;
-						enterSelection();
+						persistentUpdate = false;
+						openSubState(new KeyBindMenu());
+						showKeybindsMenu = false;
+						KeyBindMenu.backThing = function()
+						{
+							persistentUpdate = true;
+							enterSelection();
+						}
 					}
-				}
-				else
-				{*/
-					enterSelection();
-				//}
+					else
+					{ */
+				enterSelection();
+				// }
 			}
 
 			if (controls.BACK && allowTransit)

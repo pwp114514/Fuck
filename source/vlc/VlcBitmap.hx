@@ -375,8 +375,7 @@ class VlcBitmap extends Bitmap
 			oldTime = cTime;
 
 			#if cpp
-			//if (isPlaying && texture != null) // (Stage3D)
-			if (isPlaying)
+			if (isPlaying && texture != null)
 			{
 				try
 				{
@@ -384,7 +383,7 @@ class VlcBitmap extends Bitmap
 					if (bufferMem != null)
 					{
 						texture.uploadFromByteArray(Bytes.ofData(cast(bufferMem)), 0);
-						width++; //This is a horrible hack to force the texture to update... Surely there is a better way...
+						width++; // This is a horrible hack to force the texture to update... Surely there is a better way...
 						width--;
 					}
 				}
