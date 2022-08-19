@@ -290,7 +290,7 @@ class HelperFunctions
 
 	public static function getUsername():String
 	{
-		#if !js
+		#if desktop
 		var envs = Sys.environment();
 		if (envs.exists("USERNAME"))
 		{
@@ -389,49 +389,33 @@ class HelperFunctions
 	public static function instExists(song:String):Bool
 	{
 		if (Assets.exists('assets/songs/' + song.toLowerCase() + '/Inst.ogg'))
-		{
 			return true;
-		}
 		else
-		{
 			return false;
-		}
 	}
 
 	public static function vocalExists(song:String):Bool
 	{
 		if (Assets.exists('assets/songs/' + song.toLowerCase() + '/Voices.ogg'))
-		{
 			return true;
-		}
 		else
-		{
 			return false;
-		}
 	}
 
 	public static function instEasyExists(song:String):Bool
 	{
 		if (Assets.exists('assets/songs/' + song.toLowerCase() + '/Inst-easy.ogg'))
-		{
 			return true;
-		}
 		else
-		{
 			return false;
-		}
 	}
 
 	public static function vocalEasyExists(song:String):Bool
 	{
 		if (Assets.exists('assets/songs/' + song.toLowerCase() + '/Voices-easy.ogg'))
-		{
 			return true;
-		}
 		else
-		{
 			return false;
-		}
 	}
 
 	public static function createFakeSong(name:String):Void
@@ -464,9 +448,8 @@ class HelperFunctions
 	public static function returnMenuFont(?obj:FlxText = null):String
 	{
 		if (obj != null)
-		{
 			obj.y += 5;
-		}
+
 		return openfl.utils.Assets.getFont(GameJoltInfo.fontPath).fontName;
 	}
 
@@ -480,9 +463,8 @@ class HelperFunctions
 				font = Paths.font("DK Black Bamboo.ttf");
 			case 'field' | 'devilHall':
 				if (obj != null)
-				{
 					obj.y -= 1;
-				}
+
 				font = Paths.font("memphis.otf"); // i hate arial so i fixed this
 			case 'hall':
 				if (obj != null)
@@ -500,16 +482,14 @@ class HelperFunctions
 				font = Paths.font("Papyrus Font [UNDETALE].ttf");
 			case 'the-void':
 				if (obj != null)
-				{
 					obj.y -= 5;
-				}
+
 				font = Paths.font("Comic Sans MS.ttf");
 				obj.text = obj.text.toLowerCase();
 			default:
 				if (obj != null)
-				{
 					obj.y += 5;
-				}
+
 				font = openfl.utils.Assets.getFont(GameJoltInfo.fontPath).fontName;
 		}
 

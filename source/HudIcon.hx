@@ -82,21 +82,6 @@ class HudIcon extends FlxSprite
 						playAnim("idle");
 					};
 				}
-			case 'attackUT':
-				var oldColor:FlxColor = color;
-				color = 0xFFFFFF00;
-				new FlxTimer().start(0.3, function(timer:FlxTimer)
-				{
-					color = oldColor;
-				});
-
-			case 'dodgeUT':
-				var oldColor:FlxColor = color;
-				color = 0xFFFFFF00;
-				new FlxTimer().start(0.3, function(timer:FlxTimer)
-				{
-					color = oldColor;
-				});
 		}
 	}
 

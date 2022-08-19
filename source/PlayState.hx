@@ -2736,7 +2736,7 @@ class PlayState extends MusicBeatState
 
 				// healthBarBG.alpha = 0.0;
 
-				krBar = new FlxBar(healthBar.x, healthBar.y, LEFT_TO_RIGHT, Std.int(healthBar.width), Std.int(healthBar.height), this, 'kr', 0, 2);
+				krBar = new FlxBar(healthBarBG.x, healthBarBG.y, LEFT_TO_RIGHT, Std.int(healthBarBG.width), Std.int(healthBarBG.height), this, 'kr', 0, 2);
 				krBar.scrollFactor.set(0, 0);
 				krBar.createFilledBar(FlxColor.RED, 0xFFff00ff);
 				krBar.cameras = [camHUD];
