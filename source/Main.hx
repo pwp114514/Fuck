@@ -40,9 +40,8 @@ class Main extends Sprite
 	public static var hiddenSongs:Array<String> = ['gose', 'gose-classic', 'saness'];
 	public static var gjToastManager:GJToastManager;
 	public static var transitionDuration:Float = 0.5;
-	
-        var skipSplash:Bool = true;
-	var startFullscreen:Bool = false;
+        public static var skipSplash:Bool = true;
+	public static var startFullscreen:Bool = false;
 
 	public function new()
 	{
