@@ -1,7 +1,7 @@
 package;
 
 #if android
-import androidTools;
+import android.Tools;
 #end
 import Shaders.WhiteOverlayShader;
 import flixel.FlxG;
